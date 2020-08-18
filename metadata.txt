@@ -1,0 +1,71 @@
+TABLE `games`
+  `gid` INTEGER NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(1000) NOT NULL,
+  `year` INTEGER NOT NULL,
+  `lead_designer` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`gid`)
+
+TABLE `employees`
+`email` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(20) NOT NULL,
+`fullname` varchar(100),
+  PRIMARY KEY (`email`)
+
+TABLE `characters`
+  `chid` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
+  `first_appearance` VARCHAR(1000) DEFAULT NULL,
+  PRIMARY KEY (`chid`)
+
+TABLE `characters_in_games`
+  `chid` INTEGER NOT NULL,
+  `gid` INTEGER NOT NULL,
+  PRIMARY KEY (`chid`,`gid`),
+  FOREIGN KEY (`gid`) REFERENCES games (`gid`) ON DELETE CASCADE,
+  FOREIGN KEY (`chid`) REFERENCES characters (`chid`) ON DELETE CASCADE
+
+TABLE `platforms`
+  `pid` INTEGER NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
+  PRIMARY KEY (`pid`)
+
+TABLE `games_on_platform`
+  `pid` INTEGER NOT NULL,
+  `gid` INTEGER NOT NULL,
+  PRIMARY KEY (`gid`,`pid`),
+  FOREIGN KEY (`gid`) REFERENCES games (`gid`) ON DELETE CASCADE,
+  FOREIGN KEY (`pid`) REFERENCES platforms (`pid`) ON DELETE CASCADE
+
+TABLE `creditcards` (
+  `ccid` VARCHAR(20) NOT NULL,
+  `first_name` VARCHAR(30) NOT NULL,
+  `last_name` VARCHAR(30) NOT NULL,
+  `expire_date` DATE NOT NULL,
+  PRIMARY KEY (`ccid`)
+
+TABLE `customers`
+  `cid` INTEGER NOT NULL AUTO_INCREMENT,
+  `first_name` VARCHAR(30) NOT NULL,
+  `last_name` VARCHAR(30) NOT NULL,
+  `crid` VARCHAR(20) NOT NULL,
+  `address` VARCHAR(200) NOT NULL,
+  `email` VARCHAR(50) NOT NULL,
+  `password` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`cid`),
+  FOREIGN KEY (`crid`) REFERENCES creditcards (`ccid`) ON DELETE CASCADE
+
+TABLE `sales`
+  `sid` INTEGER NOT NULL AUTO_INCREMENT,
+  `cid` INTEGER NOT NULL,
+  `gid` INTEGER NOT NULL,
+  `sale_date` DATE NOT NULL,
+  PRIMARY KEY (`sid`),
+  FOREIGN KEY (`cid`) REFERENCES customers (`cid`) ON DELETE CASCADE,
+  FOREIGN KEY (`gid`) REFERENCES games (`gid`) ON DELETE CASCADE
+
+TABLE `ratings`
+  `gid` INTEGER NOT NULL,
+  `rating` FLOAT NOT NULL,
+  `number_ratings` INTEGER NOT NULL,
+  PRIMARY KEY (`gid`),
+  FOREIGN KEY (`gid`) REFERENCES games (`gid`)

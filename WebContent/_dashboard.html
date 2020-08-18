@@ -1,0 +1,107 @@
+
+<html>
+<head><title>_Dashboard</title></head>
+<style>
+body{  
+        		        background-image: url("backgroundforSite.png");  
+        		    background-attachment: fixed;
+        		 font-family: Arial, Helvetica, sans-serif;}
+        		 color: white;
+        		 #games{  
+        		    font-family: Arial, Helvetica, sans-serif;  
+        		    border-collapse: collapse;  
+        		    width: 95%;  
+        		    height: 85%;  
+        		}
+        		 #games td, #games th {  
+        		    border: 3px solid #e8c7ea;  
+        		    padding: 8px;  
+        		background-color: #fff9ff;
+        		 }
+        		 #games th {  
+        		    padding-top: 12px;  
+        		    padding-bottom: 12px;  
+        		    text-align: left;  
+        		    background-color: #fb89ff;  
+        		    color: white;  
+        		}
+        		  a.top:link,a.top:visited{  
+        		    background-color: #fb89ff;  
+        		    color: white;  
+        		    padding: 5px 5px;  
+        		      
+        		    text-align: center;  
+        		    text-decoration: none;  
+        		    display: inline-block;  
+        		}  
+        		    a.top:hover{  
+        		    background-color: #d16cd4;  
+        		    color: white;  
+        		    padding: 5px 5px;  
+        		    text-align: center;  
+        		    text-decoration: none;  
+        		    display: inline-block;  
+        		}
+        		form{
+        		    position: absolute;
+        		  top: 50%;
+        		  left: 50%;
+        		  background: #fff;
+        		  width: 285px;
+        		  margin: -215px 0 0 -182px;
+        		  padding: 40px;
+        		  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        		  }
+        		 a{
+        		 text-align: center}
+        		  h1 {
+        		  margin: 0 0 20px;
+            	line-height: 1;
+            	color: #fb89ff;
+            	font-size: 25px;
+            	font-weight: 400;
+            	}
+</style>
+<body>
+<form id="dashsearch_form" method="post" action="#"> 
+        					<h1 align="center">Add a new Game:</h1>
+        					    <label><b>Title</b></label>  
+        					    <br>  
+        					    <input type="text" placeholder="Enter Title" name="title">  
+        					    <br>  
+        					    <label><b>Year</b></label>  
+        					    <br>  
+        					    <input type='number' placeholder="Enter Year" name="year" min = "1900" max = "2020">  
+        					    <br>  
+        					    <label><b>Developer</b></label>  
+        					    <br>  
+        					    <input type="text" placeholder="Enter Lead Designer" name="developer">  
+        					    <br>  
+        					    <br>  
+        						<h1 align="center">Add Characters:</h1>
+        					    <label><b>Name</b></label>  
+        					    <br>  
+        					    <input type="text" placeholder="Choose Your Character" name="character">  
+        					    <br>  
+        					    <label><b>First Appearance</b></label>  
+        					    <br>  
+        					    <input type="text" placeholder="1st appearance (optional)" name="firstappear">  
+        					    <br>  
+        					    <br>  
+        						<h1 align="center">Add Platform:</h1>
+        					    <label><b>Platform</b></label>  
+        					    <br>  
+        					    <input type="text" placeholder="Enter Platform" name="platform">  
+        					    <br>  
+        					    <br> 
+        					    <button type="submit">Submit</button>   
+        					    <br> 
+        					    <div id="dashsearch_error_message"></div>  
+        					     <br> 
+        					     <a href="metadata.html">See metadata >>></a>
+        					</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="./dashsearch.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,75 @@
+<html>
+<meta charset="UTF-8">
+
+<div>TABLE `games`</div><br>
+<div>  `gid` INTEGER NOT NULL AUTO_INCREMENT,</div><br>
+<div>  `title` VARCHAR(1000) NOT NULL,</div><br>
+<div>  `year` INTEGER NOT NULL,</div><br>
+<div>  `lead_designer` VARCHAR(300) NOT NULL,</div><br>
+<div>  PRIMARY KEY (`gid`)</div><br>
+
+<div>TABLE `employees`</div><br>
+<div>`email` VARCHAR(50) NOT NULL,</div><br>
+<div>  `password` VARCHAR(20) NOT NULL,</div><br>
+<div>`fullname` varchar(100),</div><br>
+<div>  PRIMARY KEY (`email`)</div><br>
+
+<div>TABLE `characters`</div><br>
+<div>  `chid` INTEGER NOT NULL AUTO_INCREMENT</div><br>
+ <div> `name` VARCHAR(30) NOT NULL,</div><br>
+ <div> `first_appearance` VARCHAR(1000) DEFAULT NULL,</div><br>
+ <div> PRIMARY KEY (`chid`)</div><br>
+
+<div>TABLE `characters_in_games`</div><br>
+  <div>`chid` INTEGER NOT NULL,</div><br>
+  <div>`gid` INTEGER NOT NULL,</div><br>
+ <div> PRIMARY KEY (`chid`,`gid`),</div><br>
+  <div>FOREIGN KEY (`gid`) REFERENCES games (`gid`) ON DELETE CASCADE,</div><br>
+ <div> FOREIGN KEY (`chid`) REFERENCES characters (`chid`) ON DELETE CASCADE</div><br>
+
+<div>TABLE `platforms`</div><br>
+  <div>`pid` INTEGER NOT NULL AUTO_INCREMENT,</div><br>
+ <div> `name` VARCHAR(30) NOT NULL,</div><br>
+<div>  PRIMARY KEY (`pid`)</div><br>
+
+<div>TABLE `games_on_platform`</div><br>
+ <div> `pid` INTEGER NOT NULL,</div><br>
+ <div> `gid` INTEGER NOT NULL,</div><br>
+ <div> PRIMARY KEY (`gid`,`pid`),</div><br>
+ <div> FOREIGN KEY (`gid`) REFERENCES games (`gid`) ON DELETE CASCADE,</div><br>
+ <div> FOREIGN KEY (`pid`) REFERENCES platforms (`pid`) ON DELETE CASCADE</div><br>
+
+<div>TABLE `creditcards` (</div><br>
+ <div> `ccid` VARCHAR(20) NOT NULL,</div><br>
+ <div> `first_name` VARCHAR(30) NOT NULL,</div><br>
+ <div> `last_name` VARCHAR(30) NOT NULL,</div><br>
+ <div> `expire_date` DATE NOT NULL,</div><br>
+ <div> PRIMARY KEY (`ccid`)</div><br>
+
+<div>TABLE `customers`</div><br>
+<div>  `cid` INTEGER NOT NULL AUTO_INCREMENT,</div><br>
+ <div> `first_name` VARCHAR(30) NOT NULL,</div><br>
+ <div> `last_name` VARCHAR(30) NOT NULL,</div><br>
+ <div> `crid` VARCHAR(20) NOT NULL,</div><br>
+ <div> `address` VARCHAR(200) NOT NULL,</div><br>
+ <div> `email` VARCHAR(50) NOT NULL,</div><br>
+ <div> `password` VARCHAR(20) NOT NULL,</div><br>
+ <div> PRIMARY KEY (`cid`),</div><br>
+ <div> FOREIGN KEY (`crid`) REFERENCES creditcards (`ccid`) ON DELETE CASCADE</div><br>
+
+<div>TABLE `sales`</div><br>
+<div>  `sid` INTEGER NOT NULL AUTO_INCREMENT,</div><br>
+<div>  `cid` INTEGER NOT NULL,</div><br>
+<div>  `gid` INTEGER NOT NULL,</div><br>
+ <div> `sale_date` DATE NOT NULL,</div><br>
+ <div> PRIMARY KEY (`sid`),</div><br>
+ <div> FOREIGN KEY (`cid`) REFERENCES customers (`cid`) ON DELETE CASCADE,</div><br>
+ <div> FOREIGN KEY (`gid`) REFERENCES games (`gid`) ON DELETE CASCADE</div><br>
+
+<div>TABLE `ratings`</div><br>
+ <div> `gid` INTEGER NOT NULL,</div><br>
+ <div> `rating` FLOAT NOT NULL,</div><br>
+ <div> `number_ratings` INTEGER NOT NULL,</div><br>
+ <div> PRIMARY KEY (`gid`),</div><br>
+ <div> FOREIGN KEY (`gid`) REFERENCES games (`gid`)</div><br>
+  </html>
